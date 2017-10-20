@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-
+require('swiper/dist/css/swiper.css')
 Vue.config.productionTip = false
 
 Vue.use(VueAwesomeSwiper)

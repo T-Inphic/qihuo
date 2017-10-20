@@ -59,8 +59,10 @@
       <div class="founderBox">
         <div class="founder">
           <p>结构共振交易体系创始人</p>
-          <div class="stepLeft" v-for="item in founder">
-            <span class="leftIcon"></span><span class="text">{{item.text}}</span>
+          <div :class="{stepLeftactive: isShow}">
+            <div class="stepLeft" v-for="item in founder">
+              <span class="leftIcon"></span><span class="text">{{item.text}}</span>
+            </div>
           </div>
           <div class="imgBox">
             <img src="../../static/images/founder.png" alt="">
@@ -74,7 +76,7 @@
           <p v-for="item in course">{{item.text}}</p>
         </div>
         <div class="term">捕捉趋势的四大方法</div>
-        <div class="method">
+        <div class="method" :class="{active: isCircleShow}">
           <p v-for="item in way">{{item.text}}</p>
         </div>
         <div class="term">创造交易财富的五个秘诀</div>
@@ -130,8 +132,9 @@
             <swiper-slide v-for="(banner, index) in banners" :key="index">
               <img v-if="banner" :src="banner">
             </swiper-slide>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"  slot="pagination"></div>
+            <!-- <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div> -->
           </swiper>
           </div>
         </div>
@@ -186,9 +189,9 @@ export default {
   data () {
     return {
       steps: [
-        {title: '行情波动的走向是有规律的', img: './static/images/step1.png'},
-        {title: '规律是通过结构与共振来体现的', img: './static/images/step2.png'},
-        {title: '结构和共振是可以被认知的', img: './static/images/step3.png'},
+        {title: '行情波动的走向是有规律的', img: '../../static/images/step1.png'},
+        {title: '规律是通过结构与共振来体现的', img: '../../static/images/step2.png'},
+        {title: '结构和共振是可以被认知的', img: '../../static/images/step3.png'},
       ],
       skills: [
         {bottomTitle: '15 年投资积淀',title: '15 年来专注于金融期货投资研究与交易，“开仓理想，平仓满意”的生存追求，为我们锻炼出一个正确的投资理念，也锻炼出一个正确的投资策略，同时也锻造 了一个正确的交易体系。我们不但会用正确的理念去指导投资，而且还会运用正确的策略去 规划投资，并通过交易体系去圆满完成投资。',imgClass: 'skill1'},
@@ -240,7 +243,16 @@ export default {
       swiperOption: {
         autoplay: 3000,
         observeParents: true,
+        direction : 'vertical',
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
         loop: true,
+        direction: 'vertical',
+        grabCursor: true,
+        autoHeight: true,
+        observeParents: true,
+        // prevButton:'.swiper-button-prev',
+        // nextButton:'.swiper-button-next',
         onSlideChangeEnd: swiper => {
           this.page = swiper.realIndex + 1
           this.index = swiper.realIndex
@@ -250,6 +262,8 @@ export default {
       isLeave: false,
       toTop: false,
       timer: null,
+      isShow: false,
+      isCircleShow: false,
     }
   },
   mounted() {  
@@ -283,8 +297,8 @@ export default {
     },  
     needToTop: function() {  
       let curHeight = document.documentElement.scrollTop || document.body.scrollTop;  
-      let viewHeight = document.documentElement.clientHeight;  
-      if (curHeight > viewHeight + 100) {  
+      let viewHeight = document.documentElement.clientHeight;
+      if (curHeight > 200) {  
         this.toTop = true;                         //赋值是为了按钮的v-show='toTop'  
       }else{  
         this.toTop = false;  
@@ -292,14 +306,23 @@ export default {
       if (stop) {                 //STOP  
         clearInterval(this.timer);             //C2  
       }  
-      stop = true;                    //B  
+      stop = true; 
+      if(curHeight>2300&&curHeight<3400){
+        this.isShow = true;
+      }else{
+        this.isShow = false;
+      }
+      if(curHeight>2900&&curHeight<3900){
+        this.isCircleShow = true;
+      }else{
+        this.isCircleShow = false;
+      }
     }  
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
+<style lang="less">
   @import "../less/home.less";
-  @import "../../node_modules/vue-awesome-swiper/node_modules/swiper/dist/css/swiper.css";
 </style>

@@ -1,5 +1,8 @@
 .home{
     .banner{
+        img{
+            width: 100%;
+        }
         height: 500px;
     }
     .content{
@@ -29,6 +32,9 @@
                 }
                 &:hover{
                     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                    img{
+                       animation: turnaround 1s 1; 
+                    }
                 }
             }
         }
@@ -43,9 +49,11 @@
             background-size: 100% 100%;
         }
         .reason{
-            margin-top: 40px;
+            margin-top: 70px;
             padding: 40px 0;
             background-color: #fafafa;
+            background: url('../../static/images/bgmoney.png') no-repeat;
+            background-size: 100% 100%;
             .resonBox{
                 width: 1200px;
                 margin: 0 auto;
@@ -282,6 +290,9 @@
                         background-size: 100% 100%;
                     }
                 }
+                .stepLeftactive{
+                    animation: fadein 1s 1;
+                }
                 .stepLeft{
                     text-align: left;
                     font-size: 18px;
@@ -414,6 +425,19 @@
                     color: #DC1919;
                     margin-top: 27px;
                 }
+                .guaranteeBox{
+                    .swiper-container-autoheight, .swiper-container-autoheight .swiper-slide{
+                        height: 580px;
+                    }
+                }
+                .swiper-pagination-bullet{
+                    background: #fff;
+                    opacity: 0.6;
+                }
+                .swiper-pagination-bullet-active{
+                    background: #DC1919;
+                    opacity: 0.9;
+                }
             }
             &.serveBox{
                 background-color: #fff;
@@ -505,6 +529,26 @@
                 margin: 37px auto;
                 display: flex;
                 justify-content: space-between;
+                height: 140px;
+                &.active{
+                    p:first-child{
+                        animation: opticy 1.5s ease;
+                        animation-fill-mode:forwards; 
+                    }
+                    p:nth-child(2){
+                        animation: opticy 1.5s ease 0.3s 1;
+                        animation-fill-mode:forwards; 
+                    }
+                    p:nth-child(3){
+                        animation: opticy 1.5s ease 0.7s 1;
+                        animation-fill-mode:forwards; 
+                    }
+                    p:nth-child(4){
+                        animation: opticy 1.5s ease 1.2s 1;
+                        animation-fill-mode:forwards; 
+                    }
+                    
+                }
                 p{
                     width: 140px;
                     height: 140px;
@@ -513,6 +557,7 @@
                     color: #DC1919;
                     background: url('../../static/images/circleBg.png') no-repeat;
                     background-size: 100% 100%;
+                    opacity: 0;
                 }
             }
             .create{
@@ -597,4 +642,21 @@
     0% {transform: scale(1.1)}
     50% {transform: scale(0.9)}
     100% {transform: scale(1.1)}
+}
+@keyframes turnaround
+{
+    0% {transform: rotateY(0)}
+    100% {transform: rotateY(360deg)}
+}
+@keyframes fadein
+{
+    0% {transform: scale(1)}
+    40%{transform: scale(0.8)}
+    70%{transform: scale(1.2)}
+    100% {transform: scale(1)}
+}
+@keyframes opticy
+{
+    0% {opacity: 0}
+    100% {opacity: 1}
 }
