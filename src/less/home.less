@@ -460,13 +460,31 @@
                 }
                 .goodSecondBox{
                     display: flex;
+                    &.active{
+                       .goodItem{
+                            &.down{
+                                .item{
+                                    animation: down 1s ease;
+                                    animation-fill-mode:forwards;  
+                                }
+                            }
+                            &.up{
+                                .item{
+                                    animation: up 1s ease;
+                                    animation-fill-mode:forwards; 
+                                }                               
+                            }
+                       } 
+                    }
                     .goodItem{
                         height: 200px;
                         flex: 1;
-                        &.down{
+                        display: flex;
+                        align-items: center;
+                        /*&.down{
                             display: flex;
                             flex-direction: column-reverse;
-                        }
+                        }*/
                         .item{
                             font-size: 18px;
                             .itemResult{
@@ -659,4 +677,14 @@
 {
     0% {opacity: 0}
     100% {opacity: 1}
+}
+@keyframes down
+{
+    0% {transform: translateY(0)}
+    100% {transform: translateY(50px)}
+}
+@keyframes up
+{
+    0% {transform: translateY(0)}
+    100% {transform: translateY(-72px)}
 }

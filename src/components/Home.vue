@@ -156,7 +156,7 @@
       <div class="founderBox goodBox">
         <div class="founder good">
           <p>好东西只分享给懂它的有缘人</p>
-          <div class="goodSecondBox">
+          <div class="goodSecondBox" :class="{active: isGood}">
             <div class="goodItem" v-for="item in goods" :class="item.position">
               <div class="item">
                 <div>{{item.text}}</div>
@@ -264,6 +264,7 @@ export default {
       timer: null,
       isShow: false,
       isCircleShow: false,
+      isGood: false,
     }
   },
   mounted() {  
@@ -306,7 +307,7 @@ export default {
       if (stop) {                 //STOP  
         clearInterval(this.timer);             //C2  
       }  
-      stop = true; 
+      stop = true;
       if(curHeight>2300&&curHeight<3400){
         this.isShow = true;
       }else{
@@ -316,6 +317,11 @@ export default {
         this.isCircleShow = true;
       }else{
         this.isCircleShow = false;
+      }
+      if(curHeight>5900){
+        this.isGood = true;
+      }else{
+        this.isGood = false;
       }
     }  
   }
